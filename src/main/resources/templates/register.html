@@ -2,19 +2,126 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Student Register</title>
+    <title>Student Registration</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        }
+
+        .container {
+            width: 400px;
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            outline: none;
+            transition: 0.3s;
+            font-size: 15px;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 8px rgba(99, 102, 241, 0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #4338ca;
+            transform: translateY(-2px);
+        }
+
+        .icon {
+            text-align: center;
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 
 <body>
-    <h2>Student Registration</h2>
-    <form>
-        <label>Name:</label>
-        <input type="text" name="name"><br><br>
-        <label>Courses:</label>
-        
-        <button type="submit">Register</button>
 
-    </form>
+    <div class="container">
+
+        <div class="icon">🎓</div>
+
+        <h2>Student Registration</h2>
+
+        <form method="post">
+
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="name" placeholder="Enter student name">
+            </div>
+
+            <div class="form-group">
+                <label>Select Course</label>
+                <select name="courseId">
+                    <option value="">Choose a Course</option>
+
+                    <th:block th:each="course : ${courses}">
+                        <option th:value="${course.id}" th:text="${course.name}">
+                        </option>
+                    </th:block>
+                </select>
+            </div>
+
+            <button type="submit">
+                Register Student
+            </button>
+
+        </form>
+
+    </div>
 
 </body>
 
